@@ -1,29 +1,29 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args)
-    {
-        boolean exit = false;
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        while (!exit){
-            System.out.print("----Triangle Area Calculator----\nCalculate Area by Base and Height\nDigit the base: ");
-            double base = scanner.nextDouble();
-            System.out.print("Digit the height: ");
-            double height = scanner.nextDouble();
+        Coordinates coordinates = new Coordinates();
+        System.out.println("----- Triangle Calculator Area -----");
 
-            Triangle triangle = new Triangle(base, height);
-            System.out.printf("The area of the triangle is: %.2f\n", triangle.calculateArea());
+        coordinates.setA(getCoordinates(scanner, "A"));
+        coordinates.setB(getCoordinates(scanner, "B"));
+        coordinates.setC(getCoordinates(scanner, "C"));
 
-            System.out.println("Do you want to calculate another triangle? (y/n)");
-            String answer = scanner.next();
+        Triangle triangle = new Triangle(coordinates);
+        System.out.println("The area of the triangle is " + triangle.calculateAreaByCartesian());
 
-            if (answer.equals("n")) {
-                exit = true;
-                break;
-            }
-        }
+    }
 
-        scanner.close();
+    public static double[] getCoordinates(Scanner scanner, String point) {
+        System.out.println("Enter value for coordinate " + point + "(x,y):");
+        System.out.print("x: ");
+        double x = scanner.nextDouble();
+        System.out.print("y: ");
+        double y = scanner.nextDouble();
+        return new double[]{x, y};
     }
 }
+
+
