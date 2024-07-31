@@ -1,3 +1,5 @@
+package entities;
+
 public class Coordinates {
     private  double[] a;
     private  double[] b;
