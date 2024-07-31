@@ -1,29 +1,51 @@
 import java.util.Scanner;
+import entities.Coordinates;
+import entities.Triangle;
 
 public class Main {
-    public static void main(String[] args)
-    {
-        boolean exit = false;
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Coordinates coordinates = new Coordinates();
+        int option = 0;
 
-        while (!exit){
-            System.out.print("----Triangle Area Calculator----\nCalculate Area by Base and Height\nDigit the base: ");
-            double base = scanner.nextDouble();
-            System.out.print("Digit the height: ");
-            double height = scanner.nextDouble();
+        do{
+            System.out.println("\n----- Triangle Calculator Area -----\n1 - Base and Height\n2 - Cartesian Coordinates\n3- Exit\nChoose an option:");
+            option = scanner.nextInt();
 
-            Triangle triangle = new Triangle(base, height);
-            System.out.printf("The area of the triangle is: %.2f\n", triangle.calculateArea());
-
-            System.out.println("Do you want to calculate another triangle? (y/n)");
-            String answer = scanner.next();
-
-            if (answer.equals("n")) {
-                exit = true;
-                break;
+            switch (option){
+                case 1:
+                    System.out.println("Enter the base of the triangle:");
+                    double base = scanner.nextDouble();
+                    System.out.println("Enter the height of the triangle:");
+                    double height = scanner.nextDouble();
+                    Triangle triangle = new Triangle(base, height);
+                    System.out.println("The area of the triangle is " + triangle.calculateAreaByBase());
+                    break;
+                case 2:
+                    coordinates.setA(getCoordinates(scanner, "A"));
+                    coordinates.setB(getCoordinates(scanner, "B"));
+                    coordinates.setC(getCoordinates(scanner, "C"));
+                    Triangle triangle1 = new Triangle(coordinates);
+                    System.out.println("The area of the triangle is " + triangle1.calculateAreaByCartesian());
+                    break;
+                case 3:
+                    option = -1;
+                    break;
+                default:
+                    System.out.println("Invalid option");
             }
-        }
 
-        scanner.close();
+        }while (option != -1);
+    }
+
+    public static double[] getCoordinates(Scanner scanner, String point) {
+        System.out.println("Enter value for coordinate " + point + "(x,y):");
+        System.out.print("x: ");
+        double x = scanner.nextDouble();
+        System.out.print("y: ");
+        double y = scanner.nextDouble();
+        return new double[]{x, y};
     }
 }
+
+
