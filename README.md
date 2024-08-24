@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates a simple Object-Oriented Programming (OOP) approach to calculate the area of a triangle in differents ways using Java.
+This project demonstrates a simple Object-Oriented Programming (OOP) approach to calculate the area of a triangle in differents ways using Java and Typescript.
 
 ### 1. **Base and Height Method**:
 
